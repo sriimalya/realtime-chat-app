@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { conncetWS } from "./ws";
 
 function App() {
+  const timer = useRef(null);
   const socket = useRef(null);
   const [userName, setUserName] = useState("");
   const [namePopup, setNamePopup] = useState(true);
