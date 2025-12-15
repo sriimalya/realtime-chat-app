@@ -94,7 +94,7 @@ function App() {
 
     setMessages((m) => [...m, msg]);
 
-    // emit
+    // emit message
     socket.current.emit("chatMessage", msg);
 
     setText("");

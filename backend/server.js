@@ -13,8 +13,26 @@ const io= new Server(server,{
     },
 })
 
+const ROOM="group"
+
 io.on('connection', (socket)=>{
     console.log('a user connected')
+
+    socket.on('joinRoom', async(username)=>{
+        console.log(`${username} has joined the group!`);
+
+        await socket.join(ROOM);
+
+        // send to all
+        // io.to(ROOM).emit('roomNotice', username)
+
+        // broadcast -> to avaoid sending to own
+        socket.to(ROOM).emit('roomNotice', username);
+    })
+
+    socket.on('chatMessage', (msg)=>{
+        socket.to(ROOM).emit('chatMessage', msg);
+    })
 })
 
 
