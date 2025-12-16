@@ -33,9 +33,17 @@ io.on('connection', (socket)=>{
     socket.on('chatMessage', (msg)=>{
         socket.to(ROOM).emit('chatMessage', msg);
     })
+
+    socket.on('typing', (username)=>{
+        socket.to(ROOM).emit('typing', username);
+    })
+
+    socket.on('stopTyping', (username)=>{
+        socket.to(ROOM).emit('stopTyping', username);
+    })
 })
 
-
+ 
 
 app.get('/', (req, res)=>{
     res.send('<h1>Hello World</h1>')

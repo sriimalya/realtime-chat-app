@@ -53,6 +53,7 @@ function App() {
       clearTimeout(timer.current);
     }
 
+    // debounce
     timer.current = setTimeout(() => {
       socket.current.emit("stopTyping", userName);
     }, 1000);
